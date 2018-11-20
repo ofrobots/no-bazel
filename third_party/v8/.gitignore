@@ -34,7 +34,6 @@
 .settings
 .vscode
 /_*
-/base
 /build
 /buildtools
 /check-header-includes

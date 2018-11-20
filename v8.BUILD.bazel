@@ -9,7 +9,13 @@ config_setting(
 config_setting(
   name = "target_cpu_x86_64",
   values = {
-    "cpu": "x86_64"
+    "cpu": "x86_64",
+  }
+)
+config_setting(
+  name = "target_cpu_k8",
+  values = {
+    "cpu": "k8"
   }
 )
 config_setting(
@@ -55,6 +61,7 @@ COPTS =[
 
 COPTS_TARGET_ARCH = select({
   ":target_cpu_x86_64": [ "-DV8_TARGET_ARCH_X64" ],
+  ":target_cpu_k8": [ "-DV8_TARGET_ARCH_X64" ],
   "//conditions:default": [""],
 })
 
@@ -1648,39 +1655,39 @@ filegroup(
         #     "src/trap-handler/handler-inside-linux.cc",
         #     "src/trap-handler/handler-outside-linux.cc",
         # ],
-        # ":target_cpu_k8": [
-        #     "src/compiler/x64/code-generator-x64.cc",
-        #     "src/compiler/x64/instruction-codes-x64.h",
-        #     "src/compiler/x64/instruction-scheduler-x64.cc",
-        #     "src/compiler/x64/instruction-selector-x64.cc",
-        #     "src/compiler/x64/unwinding-info-writer-x64.cc",
-        #     "src/compiler/x64/unwinding-info-writer-x64.h",
-        #     "src/debug/x64/debug-x64.cc",
-        #     "src/regexp/x64/regexp-macro-assembler-x64.cc",
-        #     "src/regexp/x64/regexp-macro-assembler-x64.h",
-        #     "src/third_party/valgrind/valgrind.h",
-        #     "src/wasm/baseline/x64/liftoff-assembler-x64.h",
-        #     "src/x64/assembler-x64-inl.h",
-        #     "src/x64/assembler-x64.cc",
-        #     "src/x64/assembler-x64.h",
-        #     "src/x64/code-stubs-x64.cc",
-        #     "src/x64/codegen-x64.cc",
-        #     "src/x64/constants-x64.h",
-        #     "src/x64/cpu-x64.cc",
-        #     "src/x64/deoptimizer-x64.cc",
-        #     "src/x64/disasm-x64.cc",
-        #     "src/x64/eh-frame-x64.cc",
-        #     "src/x64/frame-constants-x64.cc",
-        #     "src/x64/frame-constants-x64.h",
-        #     "src/x64/interface-descriptors-x64.cc",
-        #     "src/x64/macro-assembler-x64.cc",
-        #     "src/x64/macro-assembler-x64.h",
-        #     "src/x64/simulator-x64.cc",
-        #     "src/x64/simulator-x64.h",
-        #     "src/x64/sse-instr.h",
-        #     "src/trap-handler/handler-inside-linux.cc",
-        #     "src/trap-handler/handler-outside-linux.cc",
-        # ],
+        ":target_cpu_k8": [
+            "src/compiler/x64/code-generator-x64.cc",
+            "src/compiler/x64/instruction-codes-x64.h",
+            "src/compiler/x64/instruction-scheduler-x64.cc",
+            "src/compiler/x64/instruction-selector-x64.cc",
+            "src/compiler/x64/unwinding-info-writer-x64.cc",
+            "src/compiler/x64/unwinding-info-writer-x64.h",
+            "src/debug/x64/debug-x64.cc",
+            "src/regexp/x64/regexp-macro-assembler-x64.cc",
+            "src/regexp/x64/regexp-macro-assembler-x64.h",
+            "src/third_party/valgrind/valgrind.h",
+            "src/wasm/baseline/x64/liftoff-assembler-x64.h",
+            "src/x64/assembler-x64-inl.h",
+            "src/x64/assembler-x64.cc",
+            "src/x64/assembler-x64.h",
+            "src/x64/code-stubs-x64.cc",
+            "src/x64/codegen-x64.cc",
+            "src/x64/constants-x64.h",
+            "src/x64/cpu-x64.cc",
+            "src/x64/deoptimizer-x64.cc",
+            "src/x64/disasm-x64.cc",
+            "src/x64/eh-frame-x64.cc",
+            "src/x64/frame-constants-x64.cc",
+            "src/x64/frame-constants-x64.h",
+            "src/x64/interface-descriptors-x64.cc",
+            "src/x64/macro-assembler-x64.cc",
+            "src/x64/macro-assembler-x64.h",
+            "src/x64/simulator-x64.cc",
+            "src/x64/simulator-x64.h",
+            "src/x64/sse-instr.h",
+            "src/trap-handler/handler-inside-linux.cc",
+            "src/trap-handler/handler-outside-linux.cc",
+        ],
         ":target_cpu_mips": [
             "src/compiler/mips/code-generator-mips.cc",
             "src/compiler/mips/instruction-codes-mips.h",
@@ -1902,7 +1909,7 @@ filegroup(
         # ":target_cpu_armeabi": ["src/builtins/arm/builtins-arm.cc"],
         # ":target_cpu_armeabi-v7a": ["src/builtins/arm/builtins-arm.cc"],
         # ":target_cpu_haswell": ["src/builtins/x64/builtins-x64.cc"],
-        # ":target_cpu_k8": ["src/builtins/x64/builtins-x64.cc"],
+        ":target_cpu_k8": ["src/builtins/x64/builtins-x64.cc"],
         ":target_cpu_mips": ["src/builtins/mips/builtins-mips.cc"],
         ":target_cpu_ppc": ["src/builtins/ppc/builtins-ppc.cc"],
         ":target_cpu_x86": ["src/builtins/ia32/builtins-ia32.cc"],
@@ -2068,7 +2075,7 @@ filegroup(
         # ":target_cpu_armeabi": [],
         # ":target_cpu_armeabi-v7a": [],
         # ":target_cpu_haswell": [],
-        # ":target_cpu_k8": [],
+        ":target_cpu_k8": [],
         ":target_cpu_mips": [],
         ":target_cpu_ppc": [],
         ":target_cpu_x86": ["src/snapshot/embedded-empty.cc"],
