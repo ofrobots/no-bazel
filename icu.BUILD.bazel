@@ -1,0 +1,19 @@
+
+# https://docs.bazel.build/versions/master/be/c-cpp.html#cc_library
+cc_library(
+  name = "common",
+  srcs = glob(["source/common/*.cpp"]),
+  hdrs = glob(["include/unicode/*.h"]),
+  deps = [],
+)
+
+cc_library(
+  name = "icu",
+  hdrs = glob(["include/unicode/*.h"]),
+  includes = ["include"],
+  deps = [
+    "//:common",
+    #"//:alldata",
+  ],
+  visibility = [ "//visibility:public" ]
+)

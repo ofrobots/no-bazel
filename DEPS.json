@@ -1,0 +1,13 @@
+{
+  "v8": {
+    "type": "http-archive",
+    "url": "https://github.com/v8/v8/archive/7.1.302.22.tar.gz",
+    "location": "third_party/v8",
+    "strip": 1
+  },
+  "trace_event_common": {
+      "type": "http-archive",
+      "url": "https://chromium.googlesource.com/chromium/src/base/trace_event/common/+archive/8c1ce86183b5b483e8b2e9a49a5c28805ac90832.tar.gz",
+      "location": "third_party/v8/base/trace_event/common"
+  }
+}
