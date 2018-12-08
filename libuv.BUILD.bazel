@@ -49,9 +49,24 @@ UV_DARWIN_SOURCES = [
   "src/unix/proctitle.c",
 ]
 
+UV_LINUX_SOURCES = [
+    "src/unix/linux-core.c",
+    "src/unix/linux-inotify.c",
+    "src/unix/linux-syscalls.c",
+    "src/unix/linux-syscalls.h",
+    "src/unix/procfs-exepath.c",
+    "src/unix/proctitle.c",
+    "src/unix/sysinfo-loadavg.c",
+    "src/unix/sysinfo-memory.c",
+]
+
 cc_library(
   name = "libuv",
-  srcs = UV_COMMON_SOURCES + UV_UNIX_SOURCES + UV_DARWIN_SOURCES,
+  srcs = UV_COMMON_SOURCES + select({
+    "@bazel_tools//src/conditions:darwin": UV_UNIX_SOURCES + UV_DARWIN_SOURCES,
+    # FIXME(ofrobots): Figure out the right way to detect linux.
+    "//conditions:default": UV_UNIX_SOURCES + UV_LINUX_SOURCES,
+  }),
   hdrs = [
     "src/unix/internal.h",
     "include/uv.h",
