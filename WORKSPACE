@@ -18,5 +18,6 @@ http_archive(
   name = "libuv",
   url = "https://github.com/libuv/libuv/archive/v1.23.2.tar.gz",
   sha256 = "30af979c4f4b8d1b895ae6d115f7400c751542ccb9e656350fc89fda08d4eabd",
+  strip_prefix = "libuv-1.23.2",
   build_file = "//:libuv.BUILD.bazel",
 )
